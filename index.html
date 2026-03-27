@@ -418,7 +418,7 @@ ul{list-style:none}
   <!-- === CLONE === -->
   <div class="tool-module" id="vt-clone" style="display:none">
     <div class="tool-input-panel">
-      <div class="card-title">爆款视频复刻 <span class="badge badge-orange">盈利60%+</span></div>
+      <div class="card-title">爆款视频复刻 <span class="badge badge-orange">API接入中</span></div>
       <div class="card-desc">上传对标爆款视频 + 替换产品图，AI 智能复刻同款</div>
       <div class="upload-area">
         <span class="upload-icon">🎬</span>
@@ -443,13 +443,13 @@ ul{list-style:none}
         <label class="model-option selected"><input type="radio" name="clone-model" value="kling-o3" checked><div><div class="mo-name">Kling O3</div><div class="mo-tags"><span class="mo-tag quality">专业</span><span class="mo-tag">8积分</span></div></div></label>
         <label class="model-option"><input type="radio" name="clone-model" value="wan26-r2v"><div><div class="mo-name">Wan2.6 R2V</div><div class="mo-tags"><span class="mo-tag premium">高端</span><span class="mo-tag">12积分</span></div></div></label>
       </div>
-      <button class="btn btn-blue" style="width:100%" id="btn-clone" onclick="doClone()" disabled>请先上传素材</button>
-      <div class="cost-hint">💡 15s复刻消耗 8 积分，生成失败全额退积分</div>
+      <button class="btn btn-blue" style="width:100%;opacity:0.5;cursor:not-allowed" id="btn-clone" disabled>视频复刻API接入中，敬请期待</button>
+      <div class="cost-hint">💡 视频复刻功能正在对接专业视频生成API，即将上线</div>
     </div>
     <div class="tool-output-panel">
       <div class="card-title">原视频 vs 新视频</div>
       <div class="output-preview" id="clone-output"><span>上传素材后可预览对比效果</span></div>
-      <button class="btn btn-success" style="width:100%" id="btn-clone-dl" disabled onclick="showToast('视频已加入下载队列','info')">⬇️ 下载复刻视频</button>
+      <button class="btn btn-success" style="width:100%" id="btn-clone-dl" disabled>⬇️ 下载复刻视频</button>
     </div>
   </div>
 
@@ -457,7 +457,7 @@ ul{list-style:none}
   <div class="tool-module" id="vt-faceswap" style="display:none">
     <div class="tool-input-panel">
       <div class="compliance-banner">⚠️ 合规提示：仅用于合法合规场景，禁止侵权/欺诈行为</div>
-      <div class="card-title">视频换脸/换人 <span class="badge badge-orange">盈利70%+</span></div>
+      <div class="card-title">视频换脸/换人 <span class="badge badge-orange">API接入中</span></div>
       <div class="card-desc">上传待处理视频 + 替换人脸图片</div>
       <div class="upload-area">
         <span class="upload-icon">🎬</span>
@@ -477,20 +477,20 @@ ul{list-style:none}
         <label>替换模式</label>
         <select><option>全脸替换</option><option>半身替换</option><option>仅表情同步</option></select>
       </div>
-      <button class="btn btn-blue" style="width:100%" id="btn-faceswap" onclick="doFaceswap()" disabled>请先上传素材</button>
-      <div class="cost-hint">💡 15s视频消耗 6 积分，生成失败全额退积分</div>
+      <button class="btn btn-blue" style="width:100%;opacity:0.5;cursor:not-allowed" id="btn-faceswap" disabled>换脸API接入中，敬请期待</button>
+      <div class="cost-hint">💡 换脸功能正在对接专业视频处理API，即将上线</div>
     </div>
     <div class="tool-output-panel">
       <div class="card-title">换脸预览</div>
       <div class="output-preview" id="faceswap-output"><span>上传素材后可预览换脸效果</span></div>
-      <button class="btn btn-success" style="width:100%" id="btn-faceswap-dl" disabled onclick="showToast('视频已加入下载队列','info')">⬇️ 下载视频</button>
+      <button class="btn btn-success" style="width:100%" id="btn-faceswap-dl" disabled>⬇️ 下载视频</button>
     </div>
   </div>
 
   <!-- === TOOLKIT === -->
   <div class="tool-module" id="vt-toolkit" style="display:none">
     <div class="tool-input-panel">
-      <div class="card-title">视频工具集 <span class="badge badge-green">盈利90%+</span></div>
+      <div class="card-title">视频工具集 <span class="badge badge-orange">API接入中</span></div>
       <div class="card-desc">去水印 · 去字幕 · 翻译 · 加字幕 · 口播配音</div>
       <div class="form-group">
         <label>选择功能</label>
@@ -519,13 +519,13 @@ ul{list-style:none}
       <div id="toolkit-voice-opts" style="display:none">
         <div class="form-group"><label>配音风格</label><select><option>男声·专业</option><option>女声·专业</option><option>男声·活泼</option><option>女声·活泼</option></select></div>
       </div>
-      <button class="btn btn-blue" style="width:100%" id="btn-toolkit" onclick="doToolkit()" disabled>请先上传视频</button>
+      <button class="btn btn-blue" style="width:100%;opacity:0.5;cursor:not-allowed" id="btn-toolkit" disabled>视频工具API接入中，敬请期待</button>
       <div class="cost-hint" id="toolkit-cost-hint">💡 去水印：单条消耗 2 积分</div>
     </div>
     <div class="tool-output-panel">
       <div class="card-title">处理结果</div>
       <div class="output-preview" id="toolkit-output"><span>上传视频后可预览处理结果</span></div>
-      <button class="btn btn-success" style="width:100%" id="btn-toolkit-dl" disabled onclick="showToast('视频已加入下载队列','info')">⬇️ 下载处理后视频</button>
+      <button class="btn btn-success" style="width:100%" id="btn-toolkit-dl" disabled>⬇️ 下载处理后视频</button>
     </div>
   </div>
 </section>
@@ -533,7 +533,7 @@ ul{list-style:none}
 <!-- ======== IMAGE SECTION ======== -->
 <section class="section section-hidden" id="sec-image">
   <div class="section-header">
-    <div class="section-title">🖼️ 图片黑科技 <span class="badge badge-green">高利润</span></div>
+    <div class="section-title">🖼️ 图片黑科技 <span class="badge badge-blue">AI生成</span></div>
     <p class="section-subtitle">产品图生成 · 去水印 · 抠图 · 去背景 · 美化锐化</p>
   </div>
   <div class="sub-tabs" id="imageTabs">
@@ -544,7 +544,7 @@ ul{list-style:none}
   <!-- === IMAGE GENERATE === -->
   <div class="tool-module" id="it-generate">
     <div class="tool-input-panel">
-      <div class="card-title">产品图片生成 <span class="badge badge-green">盈利80%+</span></div>
+      <div class="card-title">产品图片生成 <span class="badge badge-blue">AI生成</span></div>
       <div class="card-desc">上传产品原图，AI 生成多种场景营销图</div>
       <div class="upload-area">
         <span class="upload-icon">📷</span>
@@ -594,7 +594,7 @@ ul{list-style:none}
   <!-- === IMAGE TOOLS === -->
   <div class="tool-module" id="it-tools" style="display:none">
     <div class="tool-input-panel">
-      <div class="card-title">图片处理工具 <span class="badge badge-green">盈利90%+</span></div>
+      <div class="card-title">图片处理工具 <span class="badge badge-blue">AI处理</span></div>
       <div class="card-desc">去水印 · 抠图 · 去背景 · 美化 · 锐化</div>
       <div class="form-group">
         <label>选择功能</label>
@@ -619,7 +619,7 @@ ul{list-style:none}
     <div class="tool-output-panel">
       <div class="card-title">处理结果</div>
       <div class="output-preview" id="img-tool-output"><span>上传图片后可预览处理结果</span></div>
-      <button class="btn btn-success" style="width:100%;margin-top:12px" id="btn-img-tool-dl" disabled onclick="showToast('图片已加入下载队列','info')">⬇️ 下载处理后图片</button>
+      <button class="btn btn-success" style="width:100%;margin-top:12px" id="btn-img-tool-dl" disabled>⬇️ 下载处理后图片</button>
     </div>
   </div>
 </section>
@@ -627,7 +627,7 @@ ul{list-style:none}
 <!-- ======== COPY SECTION ======== -->
 <section class="section section-hidden" id="sec-copy">
   <div class="section-header">
-    <div class="section-title">✍️ 全球文案AI <span class="badge badge-green">超高利润</span></div>
+    <div class="section-title">✍️ 全球文案AI <span class="badge badge-blue">AI文案</span></div>
     <p class="section-subtitle">多场景文案生成 · 多语言翻译 · 覆盖20+语种</p>
   </div>
   <div class="sub-tabs" id="copyTabs">
@@ -638,7 +638,7 @@ ul{list-style:none}
   <!-- === COPYWRITING === -->
   <div class="tool-module" id="ct-copywrite">
     <div class="tool-input-panel">
-      <div class="card-title">多场景文案生成 <span class="badge badge-green">盈利90%+</span></div>
+      <div class="card-title">多场景文案生成 <span class="badge badge-blue">AI生成</span></div>
       <div class="card-desc">输入产品关键词/卖点，AI 生成多语言差异化广告文案</div>
       <div class="form-group">
         <label>产品关键词/名称</label>
@@ -681,7 +681,7 @@ ul{list-style:none}
   <!-- === TRANSLATE === -->
   <div class="tool-module" id="ct-translate" style="display:none">
     <div class="tool-input-panel">
-      <div class="card-title">多语言翻译 <span class="badge badge-green">盈利97%+</span></div>
+      <div class="card-title">多语言翻译 <span class="badge badge-blue">20+语种</span></div>
       <div class="card-desc">粘贴文本或上传文档，支持20+语种精准翻译</div>
       <div class="form-group">
         <label>输入文本</label>
@@ -2130,12 +2130,12 @@ async function doProductSearch() {
       if (Array.isArray(data.products) && data.products.length > 0) {
         products = data.products.map(function(p) {
           return {
-            name: p.name || 'Unknown Product',
-            blue: parseInt(p.blue) || 80,
-            profit: p.profit || '$5.00',
-            price: parseFloat(p.price) || 19.99,
-            comp: p.comp || '中',
-            selling: p.selling || '热销产品'
+            name: p.name || '未命名产品',
+            blue: parseInt(p.blue) || 0,
+            profit: p.profit || '待分析',
+            price: parseFloat(p.price) || 0,
+            comp: p.comp || '未知',
+            selling: p.selling || '暂无数据'
           };
         });
       }
