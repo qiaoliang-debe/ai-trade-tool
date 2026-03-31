@@ -1373,7 +1373,7 @@ function selectRecharge(el, amount, credits) {
   selectedRechargeCredits = credits;
   // Clear custom input if selecting a preset
   var customInput = document.getElementById('custom-amount');
-  if (el.id !== 'custom-recharge-card' && customInput) { customInput.value = ''; updateCustomCredits(); }
+  if (el.id !== 'custom-recharge-card' && customInput) { customInput.value = ''; document.getElementById('custom-credits-display').textContent = '— 积分'; }
   // Show summary
   showRechargeSummary(amount, credits);
 }
