@@ -1496,25 +1496,66 @@ function xunhupaySubmit(params) {
 }
 
 function xunhupayRedirect(params) {
-  // 保存订单到localStorage，支付完成后回跳时自动到账
-  showToast('正在跳转到支付页面...', 'info');
+  showToast('正在发起支付请求...', 'info');
+  // 使用fetch调用虎皮椒API，解析JSON获取支付页面URL
+  var body = new URLSearchParams();
+  Object.keys(params).forEach(function(k) { body.append(k, params[k]); });
 
-  // 创建隐藏表单提交到虎皮椒
+  fetch(HUPIJIAO_CONFIG.gateway, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: body.toString()
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(data) {
+    if (data.errcode === 0 && data.url) {
+      // 跳转到虎皮椒托管支付页面
+      showToast('正在跳转到支付页面...', 'info');
+      window.location.href = data.url;
+    } else if (data.errcode === 0 && data.url_qrcode) {
+      // 显示支付二维码
+      showPayQRModal(data.url_qrcode, data.url);
+    } else {
+      showToast('支付请求失败: ' + (data.errmsg || '未知错误'), 'error');
+    }
+  })
+  .catch(function(err) {
+    console.warn('Fetch failed (CORS), falling back to form POST in new window:', err);
+    // CORS回退：用表单在新窗口打开，用户在新窗口完成支付
+    xunhupayFormFallback(params);
+  });
+}
+
+function showPayQRModal(qrcodeUrl, payUrl) {
+  var overlay = document.createElement('div');
+  overlay.id = 'pay-qr-overlay';
+  overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:10000;display:flex;align-items:center;justify-content:center';
+  overlay.innerHTML = '<div style="background:var(--dark-card);border-radius:var(--radius-lg);padding:32px;max-width:400px;width:90%;text-align:center;border:1px solid var(--dark-border)">' +
+    '<h3 style="color:#fff;margin-bottom:16px;font-family:var(--font-display)">扫码支付</h3>' +
+    '<p style="color:var(--text-secondary);font-size:.85rem;margin-bottom:16px">请使用微信扫描下方二维码完成支付</p>' +
+    '<div style="background:#fff;padding:16px;border-radius:var(--radius-md);display:inline-block;margin-bottom:16px"><img src="' + qrcodeUrl + '" style="width:200px;height:200px" alt="支付二维码"></div>' +
+    (payUrl ? '<p style="margin-bottom:16px"><a href="' + payUrl + '" target="_blank" style="color:var(--blue-light);font-size:.85rem">或点击此处打开支付页面</a></p>' : '') +
+    '<button class="btn btn-outline" style="width:100%" onclick="document.getElementById(\'pay-qr-overlay\').remove()">关闭</button>' +
+    '</div>';
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.remove(); });
+  document.body.appendChild(overlay);
+}
+
+function xunhupayFormFallback(params) {
+  showToast('支付页面已在新窗口打开，请在新窗口完成支付', 'info');
   var form = document.createElement('form');
   form.method = 'POST';
   form.action = HUPIJIAO_CONFIG.gateway;
+  form.target = '_blank';
   form.style.display = 'none';
-  // 不使用target=_blank，直接在当前页跳转
-  // 支付完成后虎皮椒会跳回 return_url
   Object.keys(params).forEach(function(k) {
     var input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = k;
-    input.value = params[k];
+    input.type = 'hidden'; input.name = k; input.value = params[k];
     form.appendChild(input);
   });
   document.body.appendChild(form);
   form.submit();
+  setTimeout(function() { form.remove(); }, 1000);
 }
 
 
